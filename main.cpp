@@ -1,7 +1,10 @@
-#include <iostream>
-#include <string>
-#include <sstream>
+#include <cstdint>
 #include <exception>
+#include <iostream>
+#include <map>
+#include <string>
+
+#include "operators_overloading.cpp"
 
 template <class T, class U>
 void AssertEqual(const T& t,
@@ -15,10 +18,22 @@ void AssertEqual(const T& t,
   }
 }
 
+void Assert(bool b, const std::string& hint) {
+  AssertEqual(b, true, hint);
+}
+
 
 int main() {
+
+  std::map<std::string, uint16_t> m1 { {"first", 1}, {"second", 2} };
+  std::map<std::string, uint16_t> m2 { {"first", 1}, {"second", 3} };
+
+  AssertEqual(0, 0, "Assert equality");
+  AssertEqual(m1, m2, "Assert equality for maps");
+
+  Assert(true, "Assert boolean");
+
   
-  AssertEqual(1, 0, "Unique string 1");
 
   return 0;
 
